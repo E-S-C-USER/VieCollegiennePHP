@@ -10,6 +10,14 @@ session_start();
 <title>Vie Collégienne</title>
 
 <link rel="stylesheet" href="style.css">
+
+<?php
+if(isset($_GET['accessible']))
+{
+    echo '<link rel="stylesheet" href="accessible_v.css">';
+}
+?>
+
 </head>
 
 <body>

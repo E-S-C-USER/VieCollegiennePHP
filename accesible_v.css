@@ -1,0 +1,84 @@
+body{
+
+    background:#000 !important;
+
+    color:#fff !important;
+}
+
+*{
+
+    animation:none !important;
+
+    transition:none !important;
+}
+
+.glass{
+
+    background:#111 !important;
+
+    border:
+    3px solid #ffff00 !important;
+
+    backdrop-filter:none !important;
+}
+
+.hero,
+.card,
+.news-card,
+.contact-card,
+.login-box{
+
+    border:
+    3px solid #ffff00 !important;
+}
+
+a{
+
+    color:#00ffff !important;
+
+    text-decoration:underline !important;
+}
+
+.button,
+button{
+
+    background:#ffff00 !important;
+
+    color:#000 !important;
+
+    font-weight:bold;
+}
+
+input,
+textarea{
+
+    background:#fff !important;
+
+    color:#000 !important;
+
+    border:
+    2px solid #000 !important;
+}
+
+.hero h1,
+h2,
+h3{
+
+    color:#fff !important;
+}
+
+.section-image,
+.image-slot,
+.gallery-item,
+.hero-image,
+.news-image{
+
+    border:
+    3px solid #00ffff !important;
+}
+
+footer{
+
+    border-top:
+    2px solid #ffff00;
+}
