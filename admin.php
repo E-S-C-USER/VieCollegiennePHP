@@ -2,88 +2,317 @@
 
 session_start();
 
-if(!isset($_SESSION["user"]))
+$users = [
+
+    "admin" => "admin123",
+    "edrys" => "edrys123",
+    "demo"  => "demo123"
+
+];
+
+$error = "";
+
+if(isset($_GET["guest"]))
 {
-    header("Location: login.php");
+    $_SESSION["guest"] = true;
+
+    header("Location:index.php");
     exit;
 }
 
-$file = "content.html";
-
-if(
-    isset($_POST["save"]) &&
-    isset($_POST["content"])
-){
-    file_put_contents(
-        $file,
-        $_POST["content"]
-    );
-}
-
-$content = "";
-
-if(file_exists($file))
+if($_SERVER["REQUEST_METHOD"] === "POST")
 {
-    $content = file_get_contents($file);
+    $username =
+    trim($_POST["username"] ?? "");
+
+    $password =
+    trim($_POST["password"] ?? "");
+
+    if(
+        isset($users[$username])
+        &&
+        $users[$username] === $password
+    )
+    {
+        $_SESSION["user"] =
+        $username;
+
+        header(
+        "Location:admin.php"
+        );
+
+        exit;
+    }
+
+    $error =
+    "Identifiants incorrects.";
 }
-
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Administration</title>
 
-<link rel="stylesheet" href="style.css">
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>
+Connexion - Vie Collégienne
+</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
 </head>
+
 <body>
 
-<header class="topbar glass">
+<div class="aurora a1"></div>
+<div class="aurora a2"></div>
+<div class="aurora a3"></div>
 
-    <div>
-        Connecté :
-        <?= htmlspecialchars($_SESSION["user"]) ?>
-    </div>
+<div id="cursor-glow"></div>
 
-    <div>
+<div class="login-page">
 
-        <a class="button" href="index.php">
-            Voir le site
-        </a>
+    <div class="glass login-box">
 
-        <a class="button" href="logout.php">
-            Déconnexion
-        </a>
+        <h1>
+            Administration
+        </h1>
 
-    </div>
+        <p class="login-subtitle">
 
-</header>
+            Connexion réservée à
+            l'équipe organisatrice.
 
-<div class="admin-container">
+        </p>
 
-    <div class="glass editor">
+        <?php if($error): ?>
 
-        <h2>Modifier le contenu</h2>
+            <div class="error-box">
+
+                <?= htmlspecialchars($error) ?>
+
+            </div>
+
+        <?php endif; ?>
 
         <form method="post">
 
-            <textarea
-                name="content"
-            ><?= htmlspecialchars($content) ?></textarea>
+            <input
+                type="text"
+                name="username"
+                placeholder="Utilisateur"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Mot de passe"
+                required
+            >
 
             <button
                 type="submit"
-                name="save"
-            >
-                Sauvegarder
+                class="button">
+
+                Connexion
+
             </button>
 
         </form>
+
+        <div class="login-separator"></div>
+
+        login.php?guest=1
+
+            Accéder au site
+
+        </a>
+
+        <a
+        href="index.php"
+        class="simple-link">
+
+            Retour à l'accueil
+
+        </a>
+
+        <div class="demo-users">
+
+            <h3>
+                Comptes de démonstration
+            </h3>
+
+            <ul>
+
+                <li>
+                    admin / admin123
+                </li>
+
+                <li>
+                    edrys / edrys123
+                </li>
+
+                <li>
+                    demo / demo123
+                </li>
+
+            </ul>
+
+        </div>
 
     </div>
 
 </div>
 
+<script>
+
+const glow =
+document.getElementById(
+"cursor-glow"
+);
+
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+    glow.style.left =
+    e.clientX + "px";
+
+    glow.style.top =
+    e.clientY + "px";
+
+});
+</script>
+
+<style>
+
+.login-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+}
+
+.login-box{
+
+    width:100%;
+    max-width:520px;
+
+    padding:40px;
+}
+
+.login-box h1{
+
+    font-size:2.5rem;
+
+    margin-bottom:10px;
+}
+
+.login-subtitle{
+
+    margin-bottom:25px;
+
+    color:
+    rgba(255,255,255,.7);
+}
+
+.error-box{
+
+    background:
+    rgba(255,0,0,.1);
+
+    border:
+    1px solid rgba(255,0,0,.2);
+
+    padding:14px;
+
+    border-radius:16px;
+
+    margin-bottom:20px;
+}
+
+.login-separator{
+
+    height:1px;
+
+    background:
+    rgba(255,255,255,.1);
+
+    margin:25px 0;
+}
+
+.alt-button{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    background:
+    rgba(255,255,255,.08);
+}
+
+.simple-link{
+
+    display:block;
+
+    margin-top:20px;
+
+    text-align:center;
+
+    color:
+    rgba(255,255,255,.8);
+
+    text-decoration:none;
+}
+
+.demo-users{
+
+    margin-top:30px;
+
+    padding-top:25px;
+
+    border-top:
+    1px solid rgba(255,255,255,.1);
+}
+
+.demo-users h3{
+
+    margin-bottom:15px;
+}
+
+.demo-users ul{
+
+    list-style:none;
+}
+
+.demo-users li{
+
+    padding:5px 0;
+
+    color:
+    rgba(255,255,255,.7);
+}
+
+</style>
+
 </body>
+
 </html>
