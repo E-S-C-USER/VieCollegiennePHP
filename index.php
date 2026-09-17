@@ -1,12 +1,14 @@
 <?php
 session_start();
 
-$content = "";
+$content = '';
 
-if(file_exists("content.html"))
+if(file_exists('content.html'))
 {
-    $content = file_get_contents("content.html");
+    $content = file_get_contents('content.html');
 }
+
+$accessible = isset($_GET['accessible']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,35 +22,36 @@ name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>
-Vie Collégienne
+Vie Collégienne | Sainte-Marie Antony
 </title>
 
 <link
 rel="stylesheet"
 href="style.css">
 
-<?php
-if(isset($_GET["accessible"]))
-{
-?>
-accessible_v.css
-<?php
-}
-?>
+<?php if($accessible): ?>
+
+<link
+rel="stylesheet"
+href="accessible_v.css">
+
+<?php endif; ?>
 
 </head>
 
 <body>
 
+<?php if(!$accessible): ?>
+
 <div class="aurora a1"></div>
 <div class="aurora a2"></div>
 <div class="aurora a3"></div>
 
-<header class="glass topbar">
+<div id="cursor-glow"></div>
 
-    <div class="logo">
+<?php endif; ?>
 
-        Vie Collégienne
+<header class="glass topbar">   Vie Collégienne
 
     </div>
 
@@ -66,39 +69,51 @@ accessible_v.css
             Actualités
         </a>
 
-        ?accessible=1
+        <?php if(!$accessible): ?>
+
+        <a
+        class="button"
+        href="index.php?accessible=1">
 
             Accessibilité
 
+    <a
+        class="button"
+        href="index.php">
+
+            Mode Premium
+
         </a>
 
-        <?php if(isset($_SESSION["user"])): ?>
+        <?php endif; ?>
 
-            <a
-            class="button"
-            href="admin.php">
+        <?php if(isset($_SESSION['user'])): ?>
 
-                Administration
+        <a
+        class="button"
+        href="admin.php">
 
-            </a>
+            Administration
 
-            <a
-            class="button"
-            href="logout.php">
+        </a>
 
-                Déconnexion
+        <a
+        class="button"
+        href="logout.php">
 
-            </a>
+            Déconnexion
+
+        </a>
 
         <?php else: ?>
 
-            <a
-            class="button"
-            href="login.php">
+        <a
+        class="button"
+        href="login.php">
 
-                Connexion
+            Connexion
 
-            </a>
+        </a>
 
         <?php endif; ?>
 
@@ -111,40 +126,44 @@ accessible_v.css
     <div class="hero-content">
 
         <span class="badge">
-            Sainte-Marie Antony
+
+            Sainte‑Marie Antony
+
         </span>
 
         <h1>
+
             Vie Collégienne
+
         </h1>
 
         <p>
 
-            Clubs • Activités • Foyer • Événements
+            Clubs • Foyer • Activités • Événements • Projets
 
         </p>
 
         <div class="hero-actions">
 
-            #clubs
-
-                Découvrir
-
-            </a>
+            <a
+            href="#clubs"
+            class           </a>
 
             <a
-            class="button secondary"
-            href="#actualites">
+            href="#actualites"
+            class="button">
 
                 Actualités
 
             </a>
 
-        </div>
+  ge">
+
+        EMPLACEMENT IMAGE PRINCIPALE
 
     </div>
 
-    <div class</section>
+</section>
 
 <?php
 echo $content;
@@ -152,42 +171,43 @@ echo $content;
 
 <footer>
 
-    <div class="footer-content">
+    <h3>
+        Vie Collégienne
+    </h3>
 
-        <h3>
-            Vie Collégienne
-        </h3>
+    <p>
+        Collège Sainte‑Marie Antony
+    </p>
 
-        <p>
-            Collège Sainte-Marie Antony
-        </p>
-
-    </div>
+    <p>
+        2026 - 2027
+    </p>
 
 </footer>
 
-<div id="cursor-glow"></div>
+<?php if(!$accessible): ?>
 
 <script>
 
 const glow =
 document.getElementById(
-"cursor-glow"
+'cursor-glow'
 );
 
 document.addEventListener(
-"mousemove",
+'mousemove',
 (e)=>{
 
     glow.style.left =
-    e.clientX + "px";
+    e.clientX + 'px';
 
     glow.style.top =
-    e.clientY + "px";
+    e.clientY + 'px';
 
 });
 </script>
 
-</body>
+<?php endif; ?>
 
+</body>
 </html>

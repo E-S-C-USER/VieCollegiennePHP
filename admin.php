@@ -2,55 +2,37 @@
 
 session_start();
 
-$users = [
-
-    "admin" => "admin123",
-    "edrys" => "edrys123",
-    "demo"  => "demo123"
-
-];
-
-$error = "";
-
-if(isset($_GET["guest"]))
+if(!isset($_SESSION["user"]))
 {
-    $_SESSION["guest"] = true;
-
-    header("Location:index.php");
+    header("Location: login.php");
     exit;
 }
 
-if($_SERVER["REQUEST_METHOD"] === "POST")
+$contentFile = "content.html";
+
+if(
+    $_SERVER["REQUEST_METHOD"] === "POST"
+    &&
+    isset($_POST["save"])
+)
 {
-    $username =
-    trim($_POST["username"] ?? "");
-
-    $password =
-    trim($_POST["password"] ?? "");
-
-    if(
-        isset($users[$username])
-        &&
-        $users[$username] === $password
-    )
-    {
-        $_SESSION["user"] =
-        $username;
-
-        header(
-        "Location:admin.php"
-        );
-
-        exit;
-    }
-
-    $error =
-    "Identifiants incorrects.";
+    file_put_contents(
+        $contentFile,
+        $_POST["content"] ?? ""
+    );
 }
+
+$content = "";
+
+if(file_exists($contentFile))
+{
+    $content = file_get_contents(
+        $contentFile
+    );
+}
+
 ?>
-
 <!DOCTYPE html>
-
 <html lang="fr">
 
 <head>
@@ -59,10 +41,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST")
 
 <meta
 name="viewport"
-content="width=device-width,initial-scale=1.0">
+content="width=device-width, initial-scale=1.0">
 
 <title>
-Connexion - Vie Collégienne
+Administration | Vie Collégienne
 </title>
 
 <link
@@ -79,102 +61,111 @@ href="style.css">
 
 <div id="cursor-glow"></div>
 
-<div class="login-page">
+<header class="glass topbar">
 
-    <div class="glass login-box">
+    <div class="logo">
+        Administration
+    </div>
 
-        <h1>
-            Administration
-        </h1>
+    <nav>
 
-        <p class="login-subtitle">
+        <a
+        href="index.php"
+        class="button">
 
-            Connexion réservée à
-            l'équipe organisatrice.
-
-        </p>
-
-        <?php if($error): ?>
-
-            <div class="error-box">
-
-                <?= htmlspecialchars($error) ?>
-
-            </div>
-
-        <?php endif; ?>
-
-        <form method="post">
-
-            <input
-                type="text"
-                name="username"
-                placeholder="Utilisateur"
-                required
-            >
-
-            <input
-                type="password"
-                name="password"
-                placeholder="Mot de passe"
-                required
-            >
-
-            <button
-                type="submit"
-                class="button">
-
-                Connexion
-
-            </button>
-
-        </form>
-
-        <div class="login-separator"></div>
-
-        login.php?guest=1
-
-            Accéder au site
+            Voir le site
 
         </a>
 
         <a
-        href="index.php"
-        class="simple-link">
+        href="index.php">
 
-            Retour à l'accueil
+            Accessibilité
 
         </a>
 
-        <div class="demo-users">
+        <a
+        href="logout.php"
+        class="button">
 
-            <h3>
-                Comptes de démonstration
-            </h3>
+            Déconnexion
 
-            <ul>
+        </a>
 
-                <li>
-                    admin / admin123
-                </li>
+    </nav>
 
-                <li>
-                    edrys / edrys123
-                </li>
+</header>
 
-                <li>
-                    demo / demo123
-                </li>
+<section class="section">
 
-            </ul>
+    <div class="glass admin-layout">
+
+        <div class="editor-panel">
+
+            <h2>
+                Éditeur
+            </h2>
+
+            <form method="post">
+
+                <textarea
+                id="editor"
+                name="content"><?= htmlspecialchars($content) ?></textarea>
+
+                <div class="editor-actions">
+
+                    <button
+                    type="submit"
+                    name="save">
+
+                        Sauvegarder
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="preview-panel">
+
+            <h2>
+                Aperçu
+            </h2>
+
+            <div id="preview">
+
+                <?= $content ?>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+</section>
 
 <script>
+
+const editor =
+document.getElementById(
+"editor"
+);
+
+const preview =
+document.getElementById(
+"preview"
+);
+
+editor.addEventListener(
+"input",
+()=>{
+
+    preview.innerHTML =
+    editor.value;
+
+});
 
 const glow =
 document.getElementById(
@@ -192,127 +183,79 @@ document.addEventListener(
     e.clientY + "px";
 
 });
+
 </script>
 
 <style>
 
-.login-page{
+.admin-layout{
 
-    min-height:100vh;
+    display:grid;
 
-    display:flex;
+    grid-template-columns:
+    1fr 1fr;
 
-    justify-content:center;
+    gap:25px;
 
-    align-items:center;
-
-    padding:30px;
+    padding:25px;
 }
 
-.login-box{
-
-    width:100%;
-    max-width:520px;
-
-    padding:40px;
-}
-
-.login-box h1{
-
-    font-size:2.5rem;
-
-    margin-bottom:10px;
-}
-
-.login-subtitle{
-
-    margin-bottom:25px;
-
-    color:
-    rgba(255,255,255,.7);
-}
-
-.error-box{
-
-    background:
-    rgba(255,0,0,.1);
-
-    border:
-    1px solid rgba(255,0,0,.2);
-
-    padding:14px;
-
-    border-radius:16px;
-
-    margin-bottom:20px;
-}
-
-.login-separator{
-
-    height:1px;
-
-    background:
-    rgba(255,255,255,.1);
-
-    margin:25px 0;
-}
-
-.alt-button{
+textarea{
 
     width:100%;
 
-    display:flex;
+    min-height:700px;
 
-    justify-content:center;
+    resize:vertical;
+
+    padding:20px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:20px;
 
     background:
-    rgba(255,255,255,.08);
+    rgba(255,255,255,.05);
+
+    color:white;
+
+    font-family:
+    Consolas,
+    monospace;
 }
 
-.simple-link{
+#preview{
 
-    display:block;
+    min-height:700px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,.03);
+
+    overflow:auto;
+}
+
+.editor-actions{
 
     margin-top:20px;
-
-    text-align:center;
-
-    color:
-    rgba(255,255,255,.8);
-
-    text-decoration:none;
 }
 
-.demo-users{
+@media(max-width:1200px){
 
-    margin-top:30px;
+    .admin-layout{
 
-    padding-top:25px;
+        grid-template-columns:
+        1fr;
+    }
 
-    border-top:
-    1px solid rgba(255,255,255,.1);
-}
-
-.demo-users h3{
-
-    margin-bottom:15px;
-}
-
-.demo-users ul{
-
-    list-style:none;
-}
-
-.demo-users li{
-
-    padding:5px 0;
-
-    color:
-    rgba(255,255,255,.7);
 }
 
 </style>
 
 </body>
-
 </html>

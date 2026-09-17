@@ -1,345 +1,78 @@
-/* ========================================
-   MODE ACCESSIBILITÉ
-======================================== */
-
 *{
-
     animation:none !important;
-
     transition:none !important;
-
     transform:none !important;
-
-    scroll-behavior:auto !important;
 }
 
-/* ========================================
-   BASE
-======================================== */
-
-html,
 body{
+    background:#fff !important;
 
-    background:#ffffff !important;
-
-    color:#000000 !important;
+    color:#000 !important;
 
     font-family:
     Arial,
-    Helvetica,
     sans-serif !important;
-
-    line-height:1.8;
 }
-
-/* ========================================
-   SUPPRESSION EFFETS
-======================================== */
 
 .aurora,
 #cursor-glow{
-
     display:none !important;
 }
-
-body::before,
-body::after{
-
-    display:none !important;
-}
-
-/* ========================================
-   CONTENEURS
-======================================== */
 
 .glass{
 
-    background:#ffffff !important;
-
-    color:#000000 !important;
+    background: #fff !important;
 
     border:
-    3px solid #000000 !important;
+    1px solid #000 !important;
 
     box-shadow:none !important;
 
     backdrop-filter:none !important;
-
-    -webkit-backdrop-filter:none !important;
 }
 
-/* ========================================
-   HEADER
-======================================== */
-
-.topbar{
-
-    background:#ffffff !important;
-
-    border:
-    3px solid #000000 !important;
+.hero h1,
+h2,
+h3{
+    color:#000 !important;
 }
-
-.logo{
-
-    color:#000000 !important;
-
-    font-weight:bold;
-}
-
-/* ========================================
-   HERO
-======================================== */
-
-.hero{
-
-    background:#ffffff !important;
-}
-
-.hero h1{
-
-    color:#000000 !important;
-
-    font-size:
-    clamp(2rem,5vw,4rem);
-
-    background:none !important;
-
-    -webkit-background-clip:initial !important;
-
-    background-clip:initial !important;
-
-    text-shadow:none !important;
-}
-
-.hero p{
-
-    color:#111111 !important;
-}
-
-.hero-image{
-
-    border:
-    3px solid #000000 !important;
-
-    background:#f4f4f4 !important;
-}
-
-/* ========================================
-   BOUTONS
-======================================== */
 
 .button,
 button{
 
-    background:#000000 !important;
-
-    color:#ffffff !important;
-
-    border:
-    2px solid #000000 !important;
-
-    box-shadow:none !important;
-
-    font-weight:bold;
+    background:#000 !important;
+    color:#fff !important;
 }
-
-.button:hover,
-button:hover{
-
-    background:#222222 !important;
-}
-
-/* ========================================
-   LIENS
-======================================== */
-
-a{
-
-    color:#0055ff !important;
-
-    text-decoration:underline !important;
-
-    font-weight:bold;
-}
-
-/* ========================================
-   SECTIONS
-======================================== */
-
-.section{
-
-    background:#ffffff !important;
-}
-
-.section h2{
-
-    color:#000000 !important;
-
-    border-bottom:
-    2px solid #000000;
-
-    padding-bottom:10px;
-}
-
-/* ========================================
-   CARTES
-======================================== */
-
-.card{
-
-    background:#ffffff !important;
-
-    color:#000000 !important;
-
-    border:
-    2px solid #000000 !important;
-
-    box-shadow:none !important;
-}
-
-.card h3{
-
-    color:#000000 !important;
-}
-
-.card p{
-
-    color:#111111 !important;
-}
-
-.image-slot{
-
-    border:
-    2px solid #000000 !important;
-
-    background:#f1f1f1 !important;
-}
-
-/* ========================================
-   ACTUALITES
-======================================== */
-
-.news-card{
-
-    background:#ffffff !important;
-
-    border:
-    2px solid #000000 !important;
-}
-
-.news-image{
-
-    background:#f3f3f3 !important;
-
-    border:
-    2px solid #000000 !important;
-}
-
-/* ========================================
-   GALERIE
-======================================== */
-
-.gallery-item{
-
-    background:#f8f8f8 !important;
-
-    border:
-    2px solid #000000 !important;
-}
-
-/* ========================================
-   CONTACT
-======================================== */
-
-.contact-card{
-
-    background:#ffffff !important;
-
-    border:
-    2px solid #000000 !important;
-}
-
-/* ========================================
-   FORMULAIRES
-======================================== */
 
 input,
 textarea{
 
-    background:#ffffff !important;
+    background:#fff !important;
 
-    color:#000000 !important;
-
-    border:
-    2px solid #000000 !important;
-
-    box-shadow:none !important;
-}
-
-input::placeholder,
-textarea::placeholder{
-
-    color:#444444 !important;
-}
-
-/* ========================================
-   ADMIN
-======================================== */
-
-.admin-container{
-
-    background:#ffffff !important;
-}
-
-.editor{
+    color:#000 !important;
 
     border:
-    2px solid #000000 !important;
+    1px solid #000 !important;
 }
 
-/* ========================================
-   FOOTER
-======================================== */
+a{
+
+    color:#0055*f !important;
+
+    text-decoration:underline !important;
+}
+
+.image-slider,
+.news-image,
+.gallery-item,
+.hero-image{
+
+    border:
+    2px solid #000 !important;
+}
 
 footer{
 
     border-top:
-    3px solid #000000;
-
-    background:#ffffff !important;
-
-    color:#000000 !important;
-}
-
-/* ========================================
-   FOCUS CLAVIER
-======================================== */
-
-a:focus,
-button:focus,
-input:focus,
-textarea:focus{
-
-    outline:
-    4px solid #0055ff !important;
-
-    outline-offset:2px;
-}
-
-/* ========================================
-   RESPONSIVE
-======================================== */
-
-@media(max-width:900px){
-
-    .hero{
-
-        display:block;
-    }
-
-    .news-card{
-
-        display:block;
-    }
+    1px solid #000;
 }

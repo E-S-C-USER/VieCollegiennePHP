@@ -1,37 +1,19 @@
-/* =================================================
-   VARIABLES
-================================================= */
-
 :root{
 
-    --bg:#030712;
-    --bg2:#071120;
+    --bg:#050816;
+    --bg2:#0a1228;
 
-    --glass:
-    rgba(255,255,255,.05);
+    --text:#ffffff;
+    --muted:#c7d2fe;
 
-    --border:
+    --primary:#00d4ff;
+    --secondary:#7c3aed;
+
+    --glass-border:
     rgba(255,255,255,.12);
 
-    --primary:
-    #00d4ff;
-
-    --secondary:
-    #7c3aed;
-
-    --text:
-    #ffffff;
-
-    --muted:
-    #cbd5e1;
-
-    --radius:
-    28px;
+    --radius:28px;
 }
-
-/* =================================================
-   RESET
-================================================= */
 
 *{
     margin:0;
@@ -45,24 +27,34 @@ html{
 
 html,
 body{
-
     width:100%;
-
     min-height:100%;
-
     overflow-x:hidden;
 }
 
 body{
+
+    color:var(--text);
 
     font-family:
     Inter,
     "Segoe UI",
     sans-serif;
 
-    color:var(--text);
-
     background:
+
+    radial-gradient(
+        circle at top left,
+        #0d2444,
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at top right,
+        #25124b,
+        transparent 35%
+    ),
+
     linear-gradient(
         180deg,
         #030712,
@@ -73,9 +65,9 @@ body{
     position:relative;
 }
 
-/* =================================================
-   GRID BACKGROUND
-================================================= */
+/* =========================
+   GRID
+========================= */
 
 body::before{
 
@@ -87,57 +79,28 @@ body::before{
 
     pointer-events:none;
 
-    z-index:-20;
-
     background-image:
 
     linear-gradient(
-    rgba(255,255,255,.015) 1px,
-    transparent 1px
+        rgba(255,255,255,.015) 1px,
+        transparent 1px
     ),
 
     linear-gradient(
-    90deg,
-    rgba(255,255,255,.015) 1px,
-    transparent 1px
+        90deg,
+        rgba(255,255,255,.015) 1px,
+        transparent 1px
     );
 
     background-size:
-    80px 80px;
+    70px 70px;
+
+    z-index:-20;
 }
 
-/* =================================================
-   CURSOR GLOW
-================================================= */
-
-#cursor-glow{
-
-    position:fixed;
-
-    width:400px;
-    height:400px;
-
-    border-radius:50%;
-
-    background:
-
-    radial-gradient(
-        circle,
-        rgba(0,212,255,.10),
-        transparent 70%
-    );
-
-    transform:
-    translate(-50%,-50%);
-
-    pointer-events:none;
-
-    z-index:-1;
-}
-
-/* =================================================
+/* =========================
    AURORAS
-================================================= */
+========================= */
 
 .aurora{
 
@@ -146,7 +109,8 @@ body::before{
     border-radius:50%;
 
     filter:
-    blur(140px);
+    blur(220px)
+    saturate(180%);
 
     pointer-events:none;
 
@@ -158,14 +122,14 @@ body::before{
     width:700px;
     height:700px;
 
-    top:-250px;
-    left:-150px;
-
     background:
-    rgba(0,212,255,.18);
+    rgba(0,212,255,.20);
+
+    top:-300px;
+    left:-100px;
 
     animation:
-    aurora1 18s infinite alternate ease-in-out;
+    aurora1 20s infinite alternate;
 }
 
 .a2{
@@ -173,14 +137,14 @@ body::before{
     width:900px;
     height:900px;
 
-    top:-100px;
-    right:-250px;
-
     background:
-    rgba(124,58,237,.15);
+    rgba(124,58,237,.16);
+
+    right:-300px;
+    top:-100px;
 
     animation:
-    aurora2 24s infinite alternate ease-in-out;
+    aurora2 26s infinite alternate;
 }
 
 .a3{
@@ -188,30 +152,26 @@ body::before{
     width:700px;
     height:700px;
 
-    bottom:-300px;
-    left:35%;
-
     background:
-    rgba(255,255,255,.08);
+    rgba(255,255,255,.07);
+
+    left:30%;
+    bottom:-300px;
 
     animation:
-    aurora3 20s infinite alternate ease-in-out;
+    aurora3 22s infinite alternate;
 }
 
 @keyframes aurora1{
-
     to{
-
         transform:
-        translate(-120px,60px)
+        translate(-100px,60px)
         scale(1.2);
     }
 }
 
 @keyframes aurora2{
-
     to{
-
         transform:
         translate(120px,-90px)
         scale(1.25);
@@ -219,18 +179,46 @@ body::before{
 }
 
 @keyframes aurora3{
-
     to{
-
         transform:
-        translate(-70px,-120px)
-        scale(1.3);
+        translate(-80px,-100px)
+        scale(1.35);
     }
 }
 
-/* =================================================
-   LIQUID GLASS APPLE STYLE
-================================================= */
+/* =========================
+   CURSOR GLOW
+========================= */
+
+#cursor-glow{
+
+    position:fixed;
+
+    width:450px;
+    height:450px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+        circle,
+        rgba(255,255,255,.04),
+        rgba(0,212,255,.05),
+        transparent 70%
+    );
+
+    transform:
+    translate(-50%,-50%);
+
+    pointer-events:none;
+
+    z-index:-5;
+}
+
+/* =========================
+   LIQUID GLASS
+========================= */
 
 .glass{
 
@@ -239,37 +227,30 @@ body::before{
     overflow:hidden;
 
     background:
-
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,.16),
-        rgba(255,255,255,.04)
-    );
+    rgba(255,255,255,.025);
 
     backdrop-filter:
-    blur(35px)
-    saturate(200%)
-    brightness(110%);
+    blur(40px)
+    saturate(220%)
+    brightness(115%);
 
     -webkit-backdrop-filter:
-    blur(35px)
-    saturate(200%)
-    brightness(110%);
+    blur(40px)
+    saturate(220%)
+    brightness(115%);
 
     border:
-    1px solid rgba(255,255,255,.18);
-
-    border-radius:var(--radius);
+    1px solid rgba(255,255,255,.15);
 
     box-shadow:
 
-        inset 0 1px 0 rgba(255,255,255,.35),
+    inset 0 1px 0 rgba(255,255,255,.22),
 
-        inset 0 -1px 0 rgba(255,255,255,.08),
+    inset 0 -1px 0 rgba(255,255,255,.05),
 
-        0 25px 60px rgba(0,0,0,.25),
+    0 20px 60px rgba(0,0,0,.20);
 
-        0 0 60px rgba(0,212,255,.08);
+    border-radius:var(--radius);
 }
 
 .glass::before{
@@ -288,11 +269,9 @@ body::before{
 
     linear-gradient(
         180deg,
-        rgba(255,255,255,.35),
+        rgba(255,255,255,.22),
         transparent
     );
-
-    opacity:.25;
 
     pointer-events:none;
 }
@@ -303,48 +282,44 @@ body::before{
 
     position:absolute;
 
-    inset:-100%;
+    left:-150px;
+    top:-150px;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
 
     background:
 
     radial-gradient(
         circle,
-        rgba(255,255,255,.12),
-        transparent 40%
+        rgba(255,255,255,.10),
+        transparent 70%
     );
 
     animation:
-    liquidLight 16s linear infinite;
-
-    pointer-events:none;
+    liquidMove 18s linear infinite;
 }
 
-@keyframes liquidLight{
+@keyframes liquidMove{
 
     from{
-
         transform:
-        translate(-20%,-20%);
+        translate(-60px,-60px);
     }
 
     to{
-
         transform:
-        translate(20%,20%);
+        translate(260px,260px);
     }
 }
 
-/* =================================================
-   TOPBAR
-================================================= */
+/* =========================
+   HEADER
+========================= */
 
 .topbar{
-
-    position:sticky;
-
-    top:20px;
-
-    z-index:999;
 
     width:min(1500px,95%);
 
@@ -356,38 +331,51 @@ body::before{
 
     justify-content:space-between;
     align-items:center;
+
+    position:sticky;
+
+    top:15px;
+
+    z-index:999;
 }
 
 .logo{
 
-    font-size:1.5rem;
+    font-size:1.4rem;
 
     font-weight:800;
-
-    letter-spacing:1px;
 }
 
 nav{
 
     display:flex;
-    gap:12px;
+
     flex-wrap:wrap;
+
+    gap:12px;
 }
 
-/* =================================================
-   BUTTON
-================================================= */
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+}
+
+/* =========================
+   BUTTONS
+========================= */
 
 .button,
 button{
 
     border:none;
 
+    color:white;
+
     cursor:pointer;
 
     text-decoration:none;
-
-    color:white;
 
     padding:14px 20px;
 
@@ -402,72 +390,29 @@ button{
         var(--secondary)
     );
 
-    transition:.35s;
-
-    position:relative;
-
-    overflow:hidden;
+    transition:.35s ease;
 }
 
 .button:hover,
 button:hover{
 
     transform:
-    translateY(-3px);
+    translateY(-4px);
 
     box-shadow:
 
-    0 0 35px rgba(0,212,255,.35);
+    0 0 30px rgba(0,212,255,.35);
 }
 
-.button::before,
-button::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-100%;
-
-    background:
-
-    linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,.35),
-        transparent
-    );
-
-    animation:
-    buttonGlow 6s linear infinite;
-}
-
-@keyframes buttonGlow{
-
-    from{
-
-        transform:
-        translateX(-100%)
-        rotate(20deg);
-    }
-
-    to{
-
-        transform:
-        translateX(100%)
-        rotate(20deg);
-    }
-}
-
-/* =================================================
+/* =========================
    HERO
-================================================= */
+========================= */
 
 .hero{
 
     width:min(1500px,95%);
 
-    min-height:720px;
+    min-height:700px;
 
     margin:30px auto;
 
@@ -476,17 +421,11 @@ button::before{
     display:grid;
 
     grid-template-columns:
-    1fr 500px;
+    1fr 450px;
 
     gap:50px;
 
     align-items:center;
-}
-
-.hero-content{
-
-    position:relative;
-    z-index:2;
 }
 
 .hero h1{
@@ -502,9 +441,9 @@ button::before{
 
     linear-gradient(
         135deg,
-        #ffffff,
-        #9ff8ff,
-        #ffffff
+        #fff,
+        #c5f6ff,
+        #fff
     );
 
     -webkit-background-clip:text;
@@ -516,36 +455,56 @@ button::before{
 
 .hero p{
 
-    max-width:700px;
-
-    font-size:1.2rem;
-
     color:var(--muted);
+
+    max-width:650px;
+
+    font-size:1.15rem;
+}
+
+.badge{
+
+    display:inline-block;
+
+    padding:10px 16px;
+
+    border-radius:99px;
+
+    margin-bottom:20px;
+
+    background:
+    rgba(255,255,255,.08);
+}
+
+.hero-actions{
+
+    margin-top:25px;
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
 }
 
 .hero-image{
 
-    min-height:500px;
+    min-height:450px;
 
-    border-radius:30px;
+    border-radius:28px;
 
     border:
     2px dashed rgba(255,255,255,.15);
 
     display:flex;
-    align-items:center;
+
     justify-content:center;
+    align-items:center;
 }
 
-.hero-image:hover{
-
-    box-shadow:
-    0 0 60px rgba(0,212,255,.15);
-}
-
-/* =================================================
+/* =========================
    SECTIONS
-================================================= */
+========================= */
 
 .section{
 
@@ -556,34 +515,28 @@ button::before{
 
 .section h2{
 
-    font-size:3rem;
-
     margin-bottom:25px;
+
+    font-size:2.5rem;
 }
 
-/* =================================================
+/* =========================
    CARDS
-================================================= */
+========================= */
 
 .cards{
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(300px,1fr));
+    repeat(auto-fit,minmax(280px,1fr));
 
-    gap:24px;
+    gap:25px;
 }
 
 .card{
 
     padding:25px;
-
-    border-radius:28px;
-
-    position:relative;
-
-    overflow:hidden;
 
     transition:.4s;
 }
@@ -595,57 +548,58 @@ button::before{
 
     box-shadow:
 
-    0 40px 80px rgba(0,0,0,.35),
+    0 40px 80px rgba(0,0,0,.30),
 
-    0 0 40px rgba(0,212,255,.14);
+    0 0 40px rgba(0,212,255,.15);
 }
 
 .image-slot{
 
     height:220px;
 
-    border-radius:24px;
+    border-radius:20px;
+
+    margin-bottom:20px;
 
     border:
-    2px dashed rgba(255,255,255,.18);
+    2px dashed rgba(255,255,255,.20);
 
     display:flex;
 
     align-items:center;
-    justify-content:center;
 
-    margin-bottom:20px;
+    justify-content:center;
 }
 
-/* =================================================
+/* =========================
    NEWS
-================================================= */
+========================= */
 
 .news-card{
 
     display:grid;
 
     grid-template-columns:
-    450px 1fr;
+    400px 1fr;
 
     gap:30px;
 
-    padding:30px;
+    padding:25px;
 }
 
 .news-image{
 
-    min-height:320px;
+    min-height:300px;
 
-    border-radius:24px;
+    border-radius:20px;
 
     border:
-    2px dashed rgba(255,255,255,.18);
+    2px dashed rgba(255,255,255,.20);
 }
 
-/* =================================================
+/* =========================
    GALLERY
-================================================= */
+========================= */
 
 .gallery{
 
@@ -659,34 +613,21 @@ button::before{
 
 .gallery-item{
 
-    min-height:260px;
-
-    border-radius:24px;
-
-    transition:.3s;
+    min-height:250px;
 }
 
-.gallery-item:hover{
-
-    transform:
-    scale(1.03);
-
-    box-shadow:
-    0 0 40px rgba(0,212,255,.15);
-}
-
-/* =================================================
+/* =========================
    CONTACT
-================================================= */
+========================= */
 
 .contact-card{
 
-    padding:30px;
+    padding:25px;
 }
 
-/* =================================================
-   LOGIN / ADMIN
-================================================= */
+/* =========================
+   LOGIN
+========================= */
 
 .login-page{
 
@@ -697,30 +638,58 @@ button::before{
     justify-content:center;
 
     align-items:center;
+
+    padding:20px;
 }
 
 .login-box{
 
-    width:min(500px,90%);
+    max-width:550px;
+
+    width:100%;
 
     padding:35px;
 }
 
-form{
+.login-logo{
+
+    width:80px;
+    height:80px;
+
+    margin:auto auto 20px;
+
+    border-radius:22px;
 
     display:flex;
-    flex-direction:column;
-    gap:15px;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:800;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #00d4ff,
+        #2563eb,
+        #7c3aed
+    );
 }
 
 input,
 textarea{
 
+    width:100%;
+
+    padding:16px;
+
     border:none;
+
+    outline:none;
 
     border-radius:18px;
 
-    padding:16px;
+    margin-bottom:15px;
 
     background:
     rgba(255,255,255,.06);
@@ -733,9 +702,21 @@ textarea{
     min-height:500px;
 }
 
-/* =================================================
+.error-box{
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,0,0,.12);
+}
+
+/* =========================
    FOOTER
-================================================= */
+========================= */
 
 footer{
 
@@ -747,25 +728,22 @@ footer{
     rgba(255,255,255,.6);
 }
 
-/* =================================================
+/* =========================
    RESPONSIVE
-================================================= */
+========================= */
 
 @media(max-width:1000px){
 
     .hero{
 
-        grid-template-columns:1fr;
+        grid-template-columns:
+        1fr;
     }
 
     .news-card{
 
-        grid-template-columns:1fr;
-    }
-
-    .hero-image{
-
-        min-height:350px;
+        grid-template-columns:
+        1fr;
     }
 }
 
@@ -774,16 +752,12 @@ footer{
     .topbar{
 
         flex-direction:column;
+
         gap:15px;
     }
 
     .hero{
 
         padding:30px;
-    }
-
-    .section h2{
-
-        font-size:2rem;
     }
 }

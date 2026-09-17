@@ -2,37 +2,43 @@
 
 session_start();
 
+if(isset($_SESSION['user']))
+{
+    header(
+    'Location: admin.php'
+    );
+
+    exit;
+}
+
 $users = [
 
-    "admin" =>
-    "admin123",
+    'admin' => 'admin123',
 
-    "edrys" =>
-    "edrys123",
+    'edrys' => 'edrys123',
 
-    "demo" =>
-    "demo123"
+    'demo' => 'demo123'
 
 ];
 
-$error = "";
+$error = '';
 
 if(
-    $_SERVER["REQUEST_METHOD"]
+    $_SERVER['REQUEST_METHOD']
     ===
-    "POST"
+    'POST'
 )
 {
     $username =
     trim(
-    $_POST["username"]
-    ?? ""
+    $_POST['username']
+    ?? ''
     );
 
     $password =
     trim(
-    $_POST["password"]
-    ?? ""
+    $_POST['password']
+    ?? ''
     );
 
     if(
@@ -45,25 +51,22 @@ if(
         $password
     )
     {
-
-        $_SESSION["user"] =
+        $_SESSION['user'] =
         $username;
 
         header(
-        "Location: admin.php"
+        'Location: admin.php'
         );
 
         exit;
     }
 
     $error =
-    "Identifiants incorrects";
+    'Identifiants incorrects';
 }
 
 ?>
-
 <!DOCTYPE html>
-
 <html lang="fr">
 
 <head>
@@ -72,7 +75,7 @@ if(
 
 <meta
 name="viewport"
-content="width=device-width,initial-scale=1.0">
+content="width=device-width, initial-scale=1.0">
 
 <title>
 Connexion
@@ -103,19 +106,16 @@ href="style.css">
         </div>
 
         <h1>
-
             Administration
-
         </h1>
 
-        <p>
+        <p class="login-subtitle">
 
-            Accès réservé à l'équipe
-            Vie Collégienne.
+            Connexion à l'espace de gestion.
 
         </p>
 
-        <?php if(!empty($error)): ?>
+        <?php if($error): ?>
 
         <div class="error-box">
 
@@ -142,7 +142,7 @@ href="style.css">
             <button
             type="submit">
 
-                Connexion
+                Se connecter
 
             </button>
 
@@ -151,7 +151,7 @@ href="style.css">
         <div class="separator"></div>
 
         <a
-        class="back-link"
+        class="button"
         href="index.php">
 
             Retour au site
@@ -161,27 +161,19 @@ href="style.css">
         <div class="demo-users">
 
             <h3>
-
-                Comptes
-
+                Comptes de démonstration
             </h3>
 
             <p>
-
                 admin / admin123
-
             </p>
 
             <p>
-
                 edrys / edrys123
-
             </p>
 
             <p>
-
                 demo / demo123
-
             </p>
 
         </div>
@@ -194,22 +186,21 @@ href="style.css">
 
 const glow =
 document.getElementById(
-"cursor-glow"
+'cursor-glow'
 );
 
 document.addEventListener(
-"mousemove",
+'mousemove',
 (e)=>{
 
     glow.style.left =
-    e.clientX + "px";
+    e.clientX + 'px';
 
     glow.style.top =
-    e.clientY + "px";
+    e.clientY + 'px';
 
 });
 </script>
 
 </body>
-
-</html>
+</html>*
