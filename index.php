@@ -57,15 +57,15 @@ href="accessible_v.css">
 
     <nav>
 
-        #foyer
+        <a href="#foyer">
             Foyer
         </a>
 
-        #clubs
+        <a href="#clubs">
             Clubs
         </a>
 
-        #actualites
+        <a href="#actualites">
             Actualités
         </a>
 
