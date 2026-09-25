@@ -33,7 +33,7 @@ href="style.css">
 
 <link
 rel="stylesheet"
-href="accessible_v.css">
+href="accesible_v.css">
 
 <?php endif; ?>
 
@@ -77,6 +77,8 @@ href="accessible_v.css">
         href="index.php?accessible=1">
 
             Accessibilité
+
+        </a>
 
     <a
         class="button"
@@ -148,7 +150,11 @@ href="accessible_v.css">
 
             <a
             href="#clubs"
-            class           </a>
+            class="button">
+
+                Découvrir les clubs
+
+            </a>
 
             <a
             href="#actualites"
@@ -158,9 +164,13 @@ href="accessible_v.css">
 
             </a>
 
-  ge">
+        </div>
 
-        EMPLACEMENT IMAGE PRINCIPALE
+    </div>
+
+    <div class="hero-image">
+
+        Image principale
 
     </div>
 
