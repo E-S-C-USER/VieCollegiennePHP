@@ -53,7 +53,7 @@ href="accessible_v.css">
 
 <header class="glass topbar">  
     <div>
-        Vie Collégienne
+        Vie Collégienne <br>
     </div>
 
     <nav>
