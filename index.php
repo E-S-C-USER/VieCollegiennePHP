@@ -51,8 +51,9 @@ href="accessible_v.css">
 
 <?php endif; ?>
 
-<header class="glass topbar">   Vie Collégienne
-
+<header class="glass topbar">  
+    <div>
+        Vie Collégienne
     </div>
 
     <nav>
